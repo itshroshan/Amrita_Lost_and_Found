@@ -4,6 +4,7 @@ import smtplib
 import random
 import os
 from werkzeug.utils import secure_filename
+from dotenv import load_dotenv
 
 
 app = Flask(__name__)
@@ -11,8 +12,8 @@ app.secret_key = "secretkey"
 
 def send_otp(email, otp):
     print("OTP for", email, "is", otp)
-    sender_email = "roshansah393@gmail.com"
-    sender_password = "nqjymnwrtnqxdpop"
+    sender_email = os.getenv("EMAIL_ADDRESS")
+    sender_password = os.getenv("EMAIL_PASSWORD")
 
     subject = "OTP Verification - Lost & Found System"
     body = f"Your OTP for login is: {otp}"
