@@ -5,7 +5,7 @@ import smtplib
 import random
 import os
 from werkzeug.utils import secure_filename
-from dotenv import load_dotenv
+from dotenv import load_dotenv 
 load_dotenv()
 
 app = Flask(__name__)
