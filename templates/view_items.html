@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>View Found Items</title>
+</head>
+<body>
+
+    {% include "navbar.html" %}
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<h2>Found Items</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Item Name</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Image</th>
+        <th>Uploaded By</th>
+        <th>Action</th>
+
+    </tr>
+
+    {% for item in items %}
+    <tr>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+        <td>{{ item[3] }}</td>
+        <td>
+            <img
+                src="{{ url_for('static', filename='uploads/' + item[4]) }}"
+                class="item-image"
+                onclick="openImage(this.src)"
+            >
+        </td>
+        <td>
+            {% if item[5] == "Admin" %}
+                Admin
+            {% elif item[5] %}
+                {{ item[5].split('@')[0] }}
+            {% else %}
+                Unknown
+            {% endif %}
+        </td>
+        <td>
+            <a href="/delete-item/{{ item[0] }}"
+            class="btn btn-outline"
+            onclick="return confirm('Delete this item?');">
+            Delete
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<br>
+<div class="back-center">
+    <a href="/admin" class="btn">Back to Dashboard</a>
+</div>
+
+<!-- Image Lightbox -->
+<div id="imageModal" class="image-modal" onclick="closeImage()">
+    <span class="close-btn">&times;</span>
+    <img id="modalImage">
+</div>
+<script src="{{ url_for('static', filename='js/image_modal.js') }}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<h1 class="page-title">Student Registration</h1>
+
+<div class="form-wrapper">
+    <form action="/register" method="post">
+
+        <input type="text" name="name" placeholder="Full Name" required>
+
+        <input type="email" name="email" placeholder="College Email" required>
+
+        <input type="password" name="password" placeholder="Password" required>
+
+        <div class="form-actions">
+            <button type="submit" class="btn">Register</button>
+        </div>
+
+        <p style="text-align:center; margin-top:15px;">
+            Already registered? <a href="/login">Login</a>
+        </p>
+
+    </form>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+</body>
+</html>

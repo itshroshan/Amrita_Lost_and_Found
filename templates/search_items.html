@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Found Items</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<h1 class="page-title">Search Found Items</h1>
+
+<div class="form-wrapper">
+    <form method="get">
+        <input type="text" name="query" placeholder="Search by item or location" value="{{ query }}">
+
+        <div class="form-actions">
+            <button type="submit" class="btn">Search</button>
+        </div>
+    </form>
+</div>
+
+{% if query and search_results|length == 0 %}
+    <p class="info-text">Item not found</p>
+{% endif %}
+
+<div class="dashboard">
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <th>Description</th>
+            <th>Last Seen Location</th>
+            <th>Image</th>
+        </tr>
+
+        {% if search_results and search_results|length > 0 %}
+            {% for item in search_results %}
+                <tr>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>
+                        <img
+                            src="{{ url_for('static', filename='uploads/' + item[4]) }}"
+                            class="item-image"
+                            onclick="openImage(this.src)"
+                        >
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            {% for item in all_items %}
+                <tr>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>
+                        <img
+                            src="{{ url_for('static', filename='uploads/' + item[4]) }}"
+                            class="item-image"
+                            onclick="openImage(this.src)"
+                        >
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+
+    <p style="text-align:center; margin-top:20px;">
+        <div class="back-center">
+            <a href="/student" class="btn">Back to Dashboard</a>
+        </div>
+    </p>
+</div>
+
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+<!-- Image Lightbox -->
+<div id="imageModal" class="image-modal" onclick="closeImage()">
+    <span class="close-btn">&times;</span>
+    <img id="modalImage">
+</div>
+<script src="{{ url_for('static', filename='js/image_modal.js') }}"></script>
+
+
+</body>
+</html>

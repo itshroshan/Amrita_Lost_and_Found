@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<div class="center-box">
+    <div class="card">
+
+        <h1 style="color:#7a0026;">{{ title }}</h1>
+        <p style="margin-top:15px;">{{ message }}</p>
+
+        <div class="form-actions" style="margin-top:25px;">
+            <a href="/verify-otp" class="btn">Try again</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

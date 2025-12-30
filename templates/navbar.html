@@ -1,0 +1,45 @@
+<div class="navbar">
+    <div class="navbar-left">
+        <img src="{{ url_for('static', filename='images/amrita_logo.jpg') }}">
+        <div class="navbar-title">Amrita Lost & Found</div>
+    </div>
+
+    <div class="navbar-right">
+
+        <!-- Dark mode toggle -->
+        <button onclick="toggleDarkMode()" class="dark-toggle" id="darkToggle">
+            🌙
+        </button>
+
+        {% if session.get("role") %}
+        <!-- Profile menu ONLY after login -->
+        <div class="profile-menu">
+            <div class="profile-icon" onclick="toggleProfileMenu()">👤</div>
+
+            <div class="profile-dropdown" id="profileDropdown">
+
+                {% if session.get("role") == "admin" %}
+                    <a href="/admin" class="dropdown-item">Home</a>
+                {% else %}
+                    <a href="/student" class="dropdown-item">Home</a>
+                {% endif %}
+                <div class="dropdown-divider"></div>
+                <a href="/change-password" class="dropdown-item">
+                    Change Password
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="/logout" class="dropdown-item logout">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+        {% else %}
+        <a href="/login" class="login-link">Login</a>
+        {% endif %}
+
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>

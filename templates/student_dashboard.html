@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    {% include "navbar.html" %}
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<div class="dashboard">
+    <h1>Student Dashboard</h1>
+
+    <div class="card-grid">
+        <div class="dashboard-card">
+            <h3>Search Found Items</h3>
+            <a href="/search" class="btn">Search</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Report Lost Item</h3>
+            <a href="/report-lost" class="btn">Report</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Report Found Item</h3>
+            <a href="/report-found" class="btn">Upload</a>
+        </div>
+    </div>
+
+    <br>
+    <a href="/logout" class="btn btn-outline">Logout</a>
+</div>
+
+
+</body>
+</html>

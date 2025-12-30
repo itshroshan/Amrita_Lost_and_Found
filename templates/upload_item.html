@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Found Item</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    {% include "navbar.html" %}
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<h1 class="page-title">Upload Found Item</h1>
+
+<div class="form-wrapper">
+    <form action="/upload-item" method="post" enctype="multipart/form-data">
+
+        <input type="text" name="item_name" placeholder="Item Name" required>
+
+        <textarea name="description" placeholder="Item Description" required></textarea>
+
+        <input type="text" name="location" placeholder="Found Location" required>
+
+        <input type="file" name="image" required>
+
+        <div class="form-actions">
+            <button type="submit" class="btn">Upload Item</button>
+        </div>
+        
+        <div class="back-center">
+            <a href="/admin" class="btn">Back to Dashboard</a>
+        </div>
+
+    </form>
+</div>
+
+
+</body>
+</html>

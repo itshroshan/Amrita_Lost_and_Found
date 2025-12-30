@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<div class="dashboard">
+    <h1>Admin Dashboard</h1>
+
+    <div class="card-grid">
+        <div class="dashboard-card">
+            <h3>Upload Found Item</h3>
+            <a href="/upload-item" class="btn">Upload</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>View Found Items</h3>
+            <a href="/view-items" class="btn">View</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>View Lost Reports</h3>
+            <a href="/view-lost-items" class="btn">View</a>
+        </div>
+    </div>
+
+    <br>
+    <a href="/logout" class="btn btn-outline">Logout</a>
+</div>
+
+</body>
+</html>

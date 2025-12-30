@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+{% set show_forgot = show_forgot if show_forgot is defined else False %}
+
+<div class="center-box">
+    <div class="card">
+        <h1 style="color:#7a0026;">{{ title }}</h1>
+        <p style="margin-top:15px;">{{ message }}</p>
+
+        {% if show_forgot %}
+            <p class="info-text" style="margin-top:15px;">
+                <a href="/forgot-password">Forgot Password?</a>
+            </p>
+        {% endif %}
+
+        <div class="form-actions" style="margin-top:25px;">
+            <a href="{{ redirect_url }}" class="btn">Back</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
