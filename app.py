@@ -5,6 +5,7 @@ import smtplib
 import random
 import os
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv 
 load_dotenv()
 
@@ -50,9 +51,9 @@ def login_user():
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT role, is_verified FROM users
-        WHERE email=? AND password=?
-    """, (email, password))
+        SELECT password, role, is_verified FROM users
+        WHERE email=?
+    """, (email,))
     user = cursor.fetchone()
 
     if not user:
@@ -64,9 +65,20 @@ def login_user():
             show_forgot=True
         )
 
-    role = user[0]
-    is_verified = user[1]
+    stored_hash = user[0]
+    role = user[1]
+    is_verified = user[2]
 
+    # 🔐 CHECK HASHED PASSWORD
+    if not check_password_hash(stored_hash, password):
+        return render_template(
+            "error.html",
+            title="Login Error",
+            message="Invalid password. Please try again.",
+            redirect_url="/login",
+            show_forgot=True
+        )
+    
     # Only students need email verification
     if role != "admin" and is_verified == 0:
         return render_template(
@@ -77,10 +89,9 @@ def login_user():
         )
 
     session["email"] = email
-    session["role"] = user[0]
+    session["role"] = role
 
-    return redirect("/admin" if user[0] == "admin" else "/student")
-
+    return redirect("/admin" if role == "admin" else "/student")
 
 @app.route("/verify-otp", methods=["GET", "POST"])
 def verify_registration_otp():
@@ -170,11 +181,12 @@ def register_user():
 
     otp = str(random.randint(100000, 999999))
 
+    hashed_password = generate_password_hash(password)
     # Store temp registration data in session
     session["reg_data"] = {
         "name": name,
         "email": email,
-        "password": password,
+        "password": hashed_password,
         "otp": otp
     }
 
@@ -414,7 +426,9 @@ def change_password_post():
     )
     user = cursor.fetchone()
 
-    if not user or user[0] != current_password:
+    stored_hash = user[0]
+
+    if not check_password_hash(stored_hash, current_password):
         return render_template(
             "change_password.html",
             email=email,
@@ -451,9 +465,11 @@ def verify_change_password():
 
         conn = get_db()
         cursor = conn.cursor()
+
+        new_hashed = generate_password_hash(data["new_password"])
         cursor.execute(
             "UPDATE users SET password=? WHERE email=?",
-            (data["new_password"], data["email"])
+            (new_hashed, data["email"])
         )
         conn.commit()
 
@@ -533,9 +549,12 @@ def reset_password():
 
         conn = get_db()
         cursor = conn.cursor()
+
+        new_hashed = generate_password_hash(new_password)
+
         cursor.execute(
             "UPDATE users SET password=? WHERE email=?",
-            (new_password, email)
+            (new_hashed, email)
         )
         conn.commit()
 
