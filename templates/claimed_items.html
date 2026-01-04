@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Claimed Items</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<h2>Claimed Items</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Item</th>
+        <th>Student Name</th>
+        <th>Reg. Number</th>
+        <th>Claimed At</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+
+    {% for item in items %}
+    <tr>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[5] }}</td>
+        <td>{{ item[6] }}</td>
+        <td>{{ item[7] }}</td>
+        <td>
+            <img
+                src="{{ url_for('static', filename='uploads/' + item[4]) }}"
+                class="item-image"
+                onclick="openImage(this.src)"
+            >
+        </td>
+        <td>
+            <a href="/delete-claimed-item/{{ item[0] }}"
+            class="btn btn-outline"
+            onclick="return confirm('Are you sure you want to delete this claimed item report?');">
+            Delete
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="back-center">
+    <a href="/admin" class="btn">Back to Dashboard</a>
+</div>
+
+<!-- Image Lightbox -->
+<div id="imageModal" class="image-modal" onclick="closeImage()">
+    <span class="close-btn">&times;</span>
+    <img id="modalImage">
+</div>
+<script src="{{ url_for('static', filename='js/image_modal.js') }}"></script>
+
+</body>
+</html>
