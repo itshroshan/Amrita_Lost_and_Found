@@ -68,7 +68,7 @@ def login_user():
     role = user[1]
     is_verified = user[2]
 
-    # 🔐 CHECK HASHED PASSWORD
+    #  check hashed password
     if not check_password_hash(stored_hash, password):
         return render_template(
             "error.html",
@@ -112,14 +112,14 @@ def verify_registration_otp():
             existing_user = cursor.fetchone()
 
             if existing_user:
-                # User exists → just mark verified
+                # if user exists, just update is_verified
                 cursor.execute("""
                     UPDATE users
                     SET is_verified = 1
                     WHERE email = ?
                 """, (reg_data["email"],))
             else:
-                # New user → insert
+                # New user is inserted
                 cursor.execute("""
                     INSERT INTO users (name, email, password, role, is_verified)
                     VALUES (?, ?, ?, ?, ?)
