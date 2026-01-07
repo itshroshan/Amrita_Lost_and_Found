@@ -370,6 +370,12 @@ def delete_claimed_item(item_id):
 
     return redirect("/claimed-items")
 
+@app.route("/student")
+def student_dashboard():
+    if "role" not in session or session["role"] != "student":
+        return redirect("/")
+    return render_template("student_dashboard.html")
+
 @app.route("/search")
 def search_items():
     if "role" not in session or session["role"] != "student":
@@ -399,13 +405,6 @@ def search_items():
         search_results=search_results,
         all_items=all_items
     )
-
-
-@app.route("/student")
-def student_dashboard():
-    if "role" not in session or session["role"] != "student":
-        return redirect("/")
-    return render_template("student_dashboard.html")
 
 @app.route("/report-lost")
 def report_lost():
