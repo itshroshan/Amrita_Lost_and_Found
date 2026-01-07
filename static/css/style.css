@@ -1,6 +1,4 @@
-/* =====================
-   AMRITA THEME VARIABLES
-   ===================== */
+
 :root {
     --amrita-maroon: #AF0C3E;
     --amrita-maroon-dark: #82042c;
@@ -9,9 +7,6 @@
     --text-dark: #333;
 }
 
-/* =====================
-   GLOBAL RESET
-   ===================== */
 * {
     margin: 0;
     padding: 0;
@@ -33,9 +28,6 @@ a {
     text-decoration: none;
 }
 
-/* =====================
-   BUTTONS
-   ===================== */
 .btn {
     display: inline-block;
     padding: 12px 28px;
@@ -64,9 +56,6 @@ a {
     color: var(--amrita-white);
 }
 
-/* =====================
-   LANDING PAGE
-   ===================== */
 .center-box {
     height: 100vh;
     background-color: var(--amrita-maroon);
@@ -99,9 +88,6 @@ a {
     margin-bottom: 20px;
 }
 
-/* =====================
-   FORMS
-   ===================== */
 form {
     width: 100%;
     max-width: 420px;
@@ -147,9 +133,6 @@ textarea {
     resize: none;
 }
 
-/* =====================
-   FORM LAYOUT HELPERS
-   ===================== */
 .form-wrapper {
     display: flex;
     justify-content: center;
@@ -165,9 +148,6 @@ textarea {
     width: 160px;
 }
 
-/* =====================
-   DASHBOARD
-   ===================== */
 .dashboard {
     padding: 40px;
 }
@@ -196,9 +176,6 @@ textarea {
     color: var(--amrita-maroon);
 }
 
-/* =====================
-   TABLES
-   ===================== */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -222,9 +199,6 @@ tr:hover {
     background-color: #f2f2f2;
 }
 
-/* =====================
-   NAVBAR
-   ===================== */
 .navbar {
     background-color: var(--amrita-maroon);
     color: var(--amrita-white);
@@ -267,9 +241,6 @@ tr:hover {
     text-decoration: underline;
 }
 
-/* =====================
-   PROFILE MENU
-   ===================== */
 .profile-menu {
     position: relative;
 }
@@ -323,9 +294,6 @@ tr:hover {
     font-weight: 600;
 }
 
-/* =====================
-   IMAGE MODAL
-   ===================== */
 .item-image {
     width: 90px;
     cursor: pointer;
@@ -362,9 +330,6 @@ tr:hover {
     cursor: pointer;
 }
 
-/* =====================
-   TEXT & LINKS
-   ===================== */
 .info-text {
     text-align: center;
     margin-top: 30px;
@@ -398,9 +363,6 @@ a.back-link {
     opacity: 0.9;
 }
 
-/* =====================
-   FOOTER
-   ===================== */
 .footer {
     text-align: center;
     padding: 15px;
@@ -409,9 +371,6 @@ a.back-link {
     font-size: 14px;
 }
 
-/* =====================
-   DARK MODE
-   ===================== */
 body.dark-mode {
     background-color: #121212;
     color: #e0e0e0;
@@ -465,9 +424,6 @@ body.dark-mode .profile-dropdown .dropdown-divider {
     background: #333;
 }
 
-/* =====================
-   DARK MODE TOGGLE
-   ===================== */
 .dark-toggle {
     background: none;
     border: none;
@@ -508,9 +464,6 @@ a.btn {
 .btn:hover {
     color: #ffffff;
 }
-/* =====================
-   BUTTON TEXT VISIBILITY FIX (LIGHT MODE)
-   ===================== */
 
 /* Ensure ALL button-style links keep correct text color */
 a.btn,
