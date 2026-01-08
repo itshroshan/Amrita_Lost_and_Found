@@ -416,6 +416,10 @@ body.dark-mode .profile-dropdown {
     border-color: #333;
 }
 
+body.dark-mode .profile-dropdown .dropdown-item {
+    color: #e0e0e0;
+}
+
 body.dark-mode .profile-dropdown .dropdown-item:hover {
     background: #2c2c2c;
 }
