@@ -526,7 +526,6 @@ def change_password_post():
             error="Current password is incorrect"
         )
 
-    # Generate OTP
     otp = str(random.randint(100000, 999999))
 
     session["pwd_change"] = {

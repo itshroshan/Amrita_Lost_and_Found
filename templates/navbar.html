@@ -8,13 +8,12 @@
 
     <div class="navbar-right">
 
-        <!-- Dark mode toggle -->
         <button onclick="toggleDarkMode()" class="dark-toggle" id="darkToggle">
             🌙
         </button>
 
         {% if session.get("role") %}
-        <!-- Profile menu ONLY after login -->
+
         <div class="profile-menu">
             <div class="profile-icon" onclick="toggleProfileMenu()">👤</div>
 

@@ -432,17 +432,13 @@ body.dark-mode .profile-dropdown .dropdown-divider {
     align-items: center;
     justify-content: center;
 }
-/* =====================
-   FORCE BUTTON TEXT WHITE IN DARK MODE
-   ===================== */
+
 body.dark-mode .btn,
 body.dark-mode .btn-outline,
 body.dark-mode button {
     color: #ffffff !important;
 }
-/* =====================
-   FORCE BACK BUTTON VISIBILITY (LIGHT MODE FIX)
-   ===================== */
+
 .back-center {
     position: relative;
     z-index: 1;
@@ -453,7 +449,7 @@ body.dark-mode button {
     visibility: visible;
     opacity: 1;
 }
-/* Fix: ensure buttons are not affected by link color rules */
+
 a.btn {
     color: #ffffff;
 }
@@ -462,18 +458,15 @@ a.btn {
     color: #ffffff;
 }
 
-/* Ensure ALL button-style links keep correct text color */
 a.btn,
 a.btn-outline {
     color: #ffffff;
 }
 
-/* Outline buttons in light mode */
 a.btn-outline {
     color: var(--amrita-maroon);
 }
 
-/* Fix logout item in profile dropdown */
 .profile-dropdown .dropdown-item.logout {
     color: var(--amrita-maroon);
 }
