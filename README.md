@@ -93,5 +93,5 @@ This project is open-source and available under the MIT License.
 ---
 
 ## 🙋‍♂️ Author
-Roshan Kumar Shah
+Roshan Kumar Sah <br>
 GitHub: https://github.com/itshroshan
